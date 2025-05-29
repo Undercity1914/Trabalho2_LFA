@@ -44,7 +44,7 @@ public class ExpressaoRegular {
         LETRAS = LETRA + "*";
         IDENT = "(" + LETRA + "(" + LETRA + "|" + DIGITO + ")*)";
         EXPONENCIAL = "(E(\\+|-)" + DIGITOS + ")";
-        REAL = "(\\-?" + DIGITOS + "\\.?" + DIGITOS + "(" + EXPONENCIAL + ")?)";
+        REAL = "(\\-?(" + DIGITOS + "\\.?" + DIGITOS + "|" + DIGITOS + ")(" + EXPONENCIAL + ")?)";
         INTEIRO = "(" + DIGITOS + EXPONENCIAL + "?)";
         NUMEROS = "(" + INTEIRO + "|" + REAL + ")";
         ATRIBUICAO = IDENT + BRANCOS + "=" + BRANCOS + "(" + LETRA + "(" + LETRA + "|" + REAL + ")*" + "|" + REAL + "(" + LETRA + "|" + REAL + ")*)";
@@ -55,7 +55,7 @@ public class ExpressaoRegular {
 
         PARAMS = "(" + BRANCOS + "(" + PARAM + "(" + BRANCOS + "," + BRANCOS + PARAM + ")*)?" + BRANCOS + ")";
 
-        FUNCAO = "(" + TIPO + BRANCOS + IDENT + BRANCOS + "\\(" + PARAMS + "\\)" + ")";
+        FUNCAO = "(" + TIPO + BRANCOS + IDENT + BRANCOS + "\\(" + PARAMS + "\\)" + ")" + "\\{"+ BRANCOS + "\\}";
 
         OPERADOR = "(==|!=|<=|>=|<|>)";
 
@@ -63,17 +63,15 @@ public class ExpressaoRegular {
 
         IF = "if" + BRANCOS + "\\(" + BRANCOS + CONDICAO + BRANCOS + "\\)";
         
-        OPERADORMATEMATICO = "(/|\\*|\\+|\\-|%)";
+        OPERADORMATEMATICO = "(/|\\*|\\+|\\-)";
         
         DIGITOSEMZERO = "[1-9]";
         DIGITOSSEMZERO = "(" + DIGITOSEMZERO + DIGITO + ")" + "*";
         
         EXPONENCIALSEMZERO = DIGITOSSEMZERO + "\\^" + DIGITOSSEMZERO;
-        REALSEMZERO = "(\\-?" + DIGITOSEMZERO + "\\.?" + DIGITOS + "(" + EXPONENCIAL + ")?)";
+        REALSEMZERO = "(\\-?" + DIGITOSEMZERO + "\\.?" + DIGITOS + "(" + EXPONENCIAL + ")?)";  
         
-        GRUPO = "\\(" + BRANCOS + OPERANDO + BRANCOS + "\\)";
-        
-        
+        CHAMADAFUNCAO = BRANCOS + IDENT + BRANCOS + "(" + "\\(" + IDENT + "\\)" + ")+";
         
         ARRAY = IDENT + "(\\[" + DIGITOS + "\\])";   
         CAMPO = ARRAY + "?" + "(" + "\\."  + IDENT + ")+";
@@ -82,10 +80,10 @@ public class ExpressaoRegular {
         GRUPO = "\\(" + BRANCOS + OPERANDO + "(" + BRANCOS + OPERADORMATEMATICO + BRANCOS + OPERANDO + ")*" + BRANCOS + "\\)";
 
         EXPRESSAOMATEMATICA = BRANCOS + "(" + OPERANDO + "|" + GRUPO + ")" + "(" + BRANCOS + OPERADORMATEMATICO + BRANCOS + 
-                "(" + OPERANDO + "|" + GRUPO + ")" + ")*" + BRANCOS;        
+                "(" + OPERANDO + "|" + GRUPO + "))*" + BRANCOS;        
         
-        EX2B = "1[01]*1";
-        EX2C = "0[01]*0";
+        EX2B = "0[01]*1";
+        EX2C = "1[01]*0";
     }
 
     public void confere(String exp, String sentenca) {
