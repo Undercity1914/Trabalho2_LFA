@@ -32,16 +32,16 @@ public class Trabalho_do_ze {
 
         ER.confere(ER.ATRIBUICAO, "media=2132313");
 
-        ER.confere(ER.INTEIRO, "10");
+        ER.confere(ER.INTEIRO, "10");*/
 
         ER.confere(ER.FUNCAO, "String funcao2(){     }");
 
-        ER.confere(ER.IF, "if (altura > 1.70)");*/
+        ER.confere(ER.IF, "if (altura > 1.70)");
         
         ER.confere(ER.EXPRESSAOMATEMATICA, "( x - - - y ) * ( a + b / c ) - funcao(h)");
         
-        //ER.confere(ER.EX2B, "01011");
+        ER.confere(ER.EX2B, "01011");
         
-        //ER.confere(ER.EX2C, "01011");
+        ER.confere(ER.EX2C, "01011");
     }
 }
