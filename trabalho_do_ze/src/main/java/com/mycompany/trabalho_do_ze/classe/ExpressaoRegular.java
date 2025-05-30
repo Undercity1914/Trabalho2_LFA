@@ -37,7 +37,7 @@ public class ExpressaoRegular {
     public String PARCELA;
 
     public ExpressaoRegular() {
-        // Definições básicas
+       
         BRANCO = "(\\s)";
         BRANCOS = BRANCO + "*";
         DIGITO = "([0-9])";
@@ -45,59 +45,59 @@ public class ExpressaoRegular {
         LETRA = "([A-Za-z])";
         LETRAS = LETRA + "+";
 
-        // Identificadores
+       
         IDENT = "(" + LETRA + "(" + LETRA + "|" + DIGITO + ")*)";
 
-        // Números
+        
         EXPONENCIAL = "(E(\\+|-)?"+ DIGITOS +")";
         REAL = "(\\-?(" + DIGITOS + "\\.?" + DIGITOS + "|" + DIGITOS + "\\.)(" + EXPONENCIAL + ")?)";
         INTEIRO = "(\\-?" + DIGITOS + "(" + EXPONENCIAL + ")?)";
         NUMEROS = "(" + REAL + "|" + INTEIRO + ")";
 
-        // Atribuição
+       
         ATRIBUICAO = IDENT + BRANCOS + "=" + BRANCOS + "(" + IDENT + "|" + NUMEROS + ")";
 
-        // Tipos e funções
+       
         TIPO = "(void|int|float|double|char|String|boolean)";
         PARAM = "(" + TIPO + BRANCOS + IDENT + ")";
         PARAMS = "(" + BRANCOS + "(" + PARAM + "(" + BRANCOS + "," + BRANCOS + PARAM + ")*)?" + BRANCOS + ")";
         FUNCAO = "(" + TIPO + BRANCOS + IDENT + BRANCOS + "\\(" + PARAMS + "\\)" + ")" + "\\{" + BRANCOS + "\\}";
 
-        // Operadores
+        
         OPERADOR = "(==|!=|<=|>=|<|>)";
         OPERADORMATEMATICO = "(\\+|\\-|\\*|\\/)";
 
-        // Condição
+       
         PARCELA = "(" + IDENT + "|" + NUMEROS + ")";
         CONDICAO = PARCELA + BRANCOS + OPERADOR + BRANCOS + PARCELA;
         IF = "if" + BRANCOS + "\\(" + BRANCOS + CONDICAO + BRANCOS + "\\)";
 
-        // Outras estruturas
+        
         DIGITOSEMZERO = "[1-9]";
         DIGITOSSEMZERO = "(" + DIGITOSEMZERO + DIGITO + "*)";
         EXPONENCIALSEMZERO = DIGITOSSEMZERO + "\\^" + DIGITOSSEMZERO;
         REALSEMZERO = "(\\-?" + DIGITOSEMZERO + "\\.?" + DIGITOS + "(" + EXPONENCIAL + ")?)";
 
-        // Chamada de função
+        
         CHAMADAFUNCAO = BRANCOS + IDENT + BRANCOS + "\\(" + BRANCOS + "(" + IDENT + "(" + BRANCOS + "," + BRANCOS + IDENT + ")*)?" + BRANCOS + "\\)";
 
-        // Arrays e campos
+       
         ARRAY = IDENT + "(\\[" + DIGITOS + "\\])";
         CAMPO = ARRAY + "?" + "(\\." + IDENT + ")+";
 
-        // OPERANDO — Permite um único sinal negativo como unário
+        
         OPERANDO = "(" + BRANCOS + "(-)?" + BRANCOS + "(" + REAL + "|" + CAMPO + "|" + ARRAY + "|" + CHAMADAFUNCAO + "|" + IDENT + ")" + BRANCOS + ")";
 
-        // GRUPO — Parênteses para agrupamento
+       
         GRUPO = "\\(" + BRANCOS + "(" + OPERANDO + "(" + BRANCOS + OPERADORMATEMATICO + BRANCOS + OPERANDO + ")*)?" + BRANCOS + "\\)";
 
-        // EXPRESSAOMATEMATICA — Estrutura correta
+        
         EXPRESSAOMATEMATICA = BRANCOS +
                 "(" + OPERANDO + "|" + GRUPO + ")" +
                 "(" + BRANCOS + OPERADORMATEMATICO + BRANCOS + 
                 "(" + OPERANDO + "|" + GRUPO + ")" + ")*" + BRANCOS;
 
-        // Linguagens formais (exemplos)
+        
         EX2B = "0[01]*1";
         EX2C = "1[01]*0";
     }
