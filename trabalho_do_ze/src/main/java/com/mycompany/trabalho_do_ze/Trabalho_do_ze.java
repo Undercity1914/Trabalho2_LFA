@@ -14,7 +14,7 @@ public class Trabalho_do_ze {
     public static void main(String[] args) {
         ExpressaoRegular ER = new ExpressaoRegular();
 
-       */ER.confere(ER.DIGITOS, "000511200021");
+        /*ER.confere(ER.DIGITOS, "000511200021");
 
         ER.confere(ER.DIGITOS, "000511200021ADAF");
 
